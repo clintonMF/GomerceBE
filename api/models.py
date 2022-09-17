@@ -4,6 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from datetime import datetime
+from email.policy import default
 
 import json
 
@@ -79,3 +80,23 @@ class JWTTokenBlocklist(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+
+"""
+This model class is to generate fake data 
+for the product table and purposely to test our
+get routes
+
+"""
+class Product(db.Model):
+    __tablename__ = "product"
+    id = db.Column(db.Integer(), primary_key=True)
+    seller_id = db.Column(db.Integer(), nullable=True)
+    Title = db.Column(db.String(), nullable=False)
+    Price = db.Column(db.Float(), nullable=False)
+    quantity = db.Column(db.Integer(), nullable=True)
+    CreatedAt = db.Column(db.DateTime(), nullable=False, default=datetime.now)
+    UpdatedAt = db.Column(db.DateTime(), nullable=False, default=datetime.now)
+    published = db.Column(db.DateTime(), nullable=False, default=datetime.now)
+    ProductCategory_id = db.Column(db.Integer(), nullable=True)
+    Rating = db.Column(db.String(), nullable=True)
