@@ -4,6 +4,7 @@
 Copyright (c) 2022 - present ajiozi.com
 """
 
+from urllib import response
 import pytest
 import json
 
@@ -98,3 +99,43 @@ def test_user_login_error(client):
     data = json.loads(response.data.decode())
     assert response.status_code == 400
     assert "Wrong credentials." in data["msg"]
+
+def test_all_products_bad_request(client):
+    """
+        Tests /products API: Product request could not processed 
+    """
+    response = client.get('/products')
+    data = json.loads(response.data.decode())
+    assert response.status_code == 200
+    assert response.success == True
+       
+       
+def test_all_products_no_product(client):
+    """
+        Tests /products API: No product found 
+    """
+    response = client.get('/products')
+    data = json.loads(response.data.decode())
+    assert response.data.length == 0
+    assert response.status_code == 204 
+    assert response.success == True
+    
+def test_paginate_products(client):
+    response = client.get('/products')
+    data = json.loads(response.data.decode())
+    
+    assert response.data.length == 0
+    assert response.status_code == 200 
+    assert response.success == True
+    assert response.data
+    
+
+def test_404_invalid_page_numbers(client):
+    response = client.get('/products?page=10000')
+    data = json.loads(response.data.decode())
+    
+    assert response.data.length == 0
+    assert response.status_code == 422 
+    assert response.success == False
+    assert response.data
+    
