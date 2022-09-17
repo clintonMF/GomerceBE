@@ -4,6 +4,8 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from datetime import datetime
+from email.policy import default
+from faker import Faker
 
 import json
 
@@ -79,3 +81,11 @@ class JWTTokenBlocklist(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+
+"""
+This model class is to generate fake data 
+for the product table and purposely to test our
+get routes
+
+"""

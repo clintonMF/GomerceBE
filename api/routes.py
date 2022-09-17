@@ -6,6 +6,8 @@ Copyright (c) 2019 - present AppSeed.us
 from datetime import datetime, timezone, timedelta
 
 from functools import wraps
+import random
+import time
 
 from flask import request
 from flask_restx import Api, Resource, fields
@@ -14,6 +16,9 @@ import jwt
 
 from .models import db, Users, JWTTokenBlocklist
 from .config import BaseConfig
+
+from faker import Faker
+import json
 
 rest_api = Api(version="1.0", title="Users API")
 
@@ -192,3 +197,272 @@ class LogoutUser(Resource):
         self.save()
 
         return {"success": True}, 200
+
+class Store:
+
+    """
+    Store dummy data for pruducts
+    """
+
+    products = {
+                "0": {
+                "id": 1,
+                "seller_id": random.randint(200, 510),
+                "Title": "LG Television",
+                "Price": "$175.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "1": {
+                "id": 2,
+                "seller_id": random.randint(10, 305),
+                "Title": "Wakie Talkie",
+                "Price": "$175.22",
+                "Quantity": random.randint(1, 5),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 5),
+                "Ratings": random.randint(0,5)
+            },
+            "2": {
+                "id": 3,
+                "seller_id": random.randint(200, 510),
+                "Title": "Satalite Dish",
+                "Price": "$175.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "3": {
+                "id": 4,
+                "seller_id": random.randint(200, 510),
+                "Title": "4KW Generator",
+                "Price": "$175.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "4": {
+                "id": 5,
+                "seller_id": random.randint(200, 510),
+                "Title": "Engineering Glooves",
+                "Price": "$1.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "5": {
+                "id": 6,
+                "seller_id": random.randint(200, 510),
+                "Title": "Wheel Chair",
+                "Price": "$105.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "6": {
+                "id": 7,
+                "seller_id": random.randint(200, 510),
+                "Title": "Lab Coat",
+                "Price": "$50.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "7": {
+                "id": 8,
+                "seller_id": random.randint(200, 510),
+                "Title": "Helmet",
+                "Price": "$5.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "8": {
+                "id": 9,
+                "seller_id": random.randint(200, 510),
+                "Title": "Samsung 32' Television",
+                "Price": "$105.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "9": {
+                "id": 10,
+                "seller_id": random.randint(200, 510),
+                "Title": "Iphone 14 Promax",
+                "Price": "$1405.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "Logitech MK295 Wireless Mouse & Keyboard Combo with SilentTouch Technology, Full Numpad, Advanced Optical Tracking, Lag-Free Wireless, 90% Less Noise - Graphite",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "10": {
+                "id": 11,
+                "seller_id": random.randint(200, 510),
+                "Title": "Gucci shoe",
+                "Price": "$100.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "11": {
+                "id": 12,
+                "seller_id": random.randint(200, 510),
+                "Title": "Diner Plates",
+                "Price": "$50.22",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "12": {
+                "id": 13,
+                "seller_id": random.randint(200, 510),
+                "Title": "Frying Pan",
+                "Price": "$60.25",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+                "13": {
+                "id": 14,
+                "seller_id": random.randint(200, 510),
+                "Title": "Jeans Shirt",
+                "Price": "$15.30",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+                "14": {
+                "id": 15,
+                "seller_id": random.randint(200, 510),
+                "Title": "Mini Skirt",
+                "Price": "$80.25",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "15": {
+                "id": 16,
+                "seller_id": random.randint(200, 510),
+                "Title": "Babe Shoe",
+                "Price": "$7.25",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "16": {
+                "id": 17,
+                "seller_id": random.randint(200, 510),
+                "Title": "Face Cap",
+                "Price": "$2.15",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "17": {
+                "id": 18,
+                "seller_id": random.randint(200, 510),
+                "Title": "Suit",
+                "Price": "$120.15",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "18": {
+                "id": 19,
+                "seller_id": random.randint(200, 510),
+                "Title": "Thinkpad IBM Laptop",
+                "Price": "$120.15",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            },
+            "19": {
+                "id": 20,
+                "seller_id": random.randint(200, 510),
+                "Title": "Security Lamp",
+                "Price": "$120.15",
+                "Quantity": random.randint(1, 10),
+                "CreatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "UpdatedAt": time.strftime("%H:%M:%S", time.localtime()),
+                "Published": time.strftime("%H:%M:%S", time.localtime()),
+                "Content": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+                "ProductCategory_id":random.randint(1, 10),
+                "Ratings": random.randint(0,5)
+            }
+        }
