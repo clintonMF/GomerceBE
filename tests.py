@@ -3,8 +3,6 @@
 """
 Copyright (c) 2022 - present ajiozi.com
 """
-
-from urllib import response
 import pytest
 import json
 
