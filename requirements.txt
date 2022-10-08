@@ -25,3 +25,4 @@ pip-upgrader==1.4.15
 pytest-cov==3.0.0
 pytest-sugar==0.9.5
 safety==2.1.1
+marshmallow==3.18.0
