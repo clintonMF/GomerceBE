@@ -2,6 +2,17 @@ from marshmallow import Schema, fields, ValidationError,  validate
 from PIL import Image #pip install Pillow, dependency for products image.
 import urllib.request
 
+
+
+
+
+
+class ProductCategorySchema(Schema):
+
+    category =  fields.String( validate=[validate.Length(max=100, min=2)])
+
+
+
 class ProductSchema(Schema):
     class Meta: ordered = True
     
@@ -21,10 +32,9 @@ class ProductSchema(Schema):
             print("image cannot be found")
             pass
 
-class ProductCategorySchema(Schema):
-    
-    category =  fields.String( validate=[validate.Length(max=100, min=2)])
     
 
-    # cat_list = ["Supermarket", "Health & Beauty", "Computing", "Home & Office", "Electronics", "Fashion", "Phones & Tablets", "Baby Products", "Gaming", "Sports", "Other" ] 
+
+
+# cat_list = ["Supermarket", "Health & Beauty", "Computing", "Home & Office", "Electronics", "Fashion", "Phones & Tablets", "Baby Products", "Gaming", "Sports", "Other" ] 
   
